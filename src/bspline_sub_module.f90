@@ -664,9 +664,12 @@
                                                       !! * 801 = `size(y) ` \(\ne\) `size(bcoef,2)`
                                                       !! * 802 = `size(z) ` \(\ne\) `size(bcoef,3)`
 
-    real(wp),dimension(nx*ny*nz) :: temp
-    real(wp),dimension(max(2*kx*(nx+1),2*ky*(ny+1),2*kz*(nz+1))) :: work
+    real(wp),allocatable :: temp(:)
+    real(wp),allocatable :: work(:)
     logical :: status_ok
+
+    allocate(temp(nx*ny*nz))
+    allocate(work(max(2*kx*(nx+1),2*ky*(ny+1),2*kz*(nz+1))))
 
     ! check validity of input
 
